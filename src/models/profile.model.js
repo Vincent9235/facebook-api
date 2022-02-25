@@ -1,49 +1,49 @@
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
-export const upsertUser = async({firstName,lastName,userId}) => {
+export const upsertUser = async ({ firstName, lastName, userId }) => {
    return prisma.profile.upsert({
-      where:{
+      where: {
          userId: userId,
       },
-      update:{
+      update: {
          firstName: firstName,
          lastName: lastName,
       },
-      create:{
+      create: {
          firstName,
          lastName,
-         User:{ 
-            connect: {id: userId},
+         User: {
+            connect: { id: userId },
          }
       }
    })
 }
 
-export const getById = async(userId) => {
+export const getById = async (userId) => {
    return prisma.profile.findUnique({
-      where:{
+      where: {
          userId: userId
       }
    })
 }
 
-export const updateById = async({id,firstName,lastName}) => {
+export const updateById = async ({ id, firstName, lastName }) => {
    return prisma.posts.update({
       where: {
-        id,
+         id,
       },
       data: {
-        firstName,
-        lastName
+         firstName,
+         lastName
       },
-    });
+   });
 }
 
-export const deleteById = async(id) => {
+export const deleteById = async (id) => {
    return prisma.profile.delete({
-      where:{
-         id
+      where: {
+         userId: id
       }
    })
 }

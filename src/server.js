@@ -10,6 +10,6 @@ export const launch = ({ protocol, port, host }) => {
 
   application.listen(
     port,
-    () => console.log(`API ready at ${protocol}://${host}:${port}`),
+    () => console.log(`API started at ${protocol}://${host}:${port}`),
   );
 }

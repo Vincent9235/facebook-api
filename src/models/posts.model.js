@@ -5,7 +5,6 @@ export const getAll = async () => {
    return prisma.post.findMany({})
 }
 
-
 export const createPosts = async({message,createdAt,updatedAt,authorId}) => {
    return prisma.post.create({
       data:{
@@ -19,7 +18,6 @@ export const createPosts = async({message,createdAt,updatedAt,authorId}) => {
    })
 
 }
-
 
 export const getById = async(id) => {
    return prisma.post.findUnique({

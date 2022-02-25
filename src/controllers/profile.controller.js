@@ -23,9 +23,8 @@ export const returnProfile = async(_request, response) => {
 
 export const deleteUser = async(_request, response) => {
   const id = _request.params.id;
-  const profile = await ProfileModel.deleteById(Number(id))
+  const profile = await ProfileModel.deleteById(id)
   response.json({});
-
 }
 
 export const updatePosts = async (_request, response) => {
