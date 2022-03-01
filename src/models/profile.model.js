@@ -1,6 +1,12 @@
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
+/**
+ * Update a profile if user exists else create a profile
+ * @param {*} firstName
+ * @param {*} lastName
+ * @param {*} userId
+ */
 export const upsertUser = async ({ firstName, lastName, userId }) => {
    return prisma.profile.upsert({
       where: {
@@ -20,6 +26,10 @@ export const upsertUser = async ({ firstName, lastName, userId }) => {
    })
 }
 
+/**
+ * Find a profil by his Id
+ * @param {*} userId 
+ */
 export const getById = async (userId) => {
    return prisma.profile.findUnique({
       where: {
@@ -28,6 +38,12 @@ export const getById = async (userId) => {
    })
 }
 
+/**
+ * Update a profile by his Id
+ * @param {} id
+ * @param {} firstName
+ * @param {} lastName 
+ */
 export const updateById = async ({ id, firstName, lastName }) => {
    return prisma.posts.update({
       where: {
@@ -40,10 +56,14 @@ export const updateById = async ({ id, firstName, lastName }) => {
    });
 }
 
+/**
+ * Delete a profile by his Id
+ * @param {*} id 
+ */
 export const deleteById = async (id) => {
-   return prisma.profile.delete({
+   await prisma.user.delete({
       where: {
-         userId: id
+         id,
       }
    })
 }

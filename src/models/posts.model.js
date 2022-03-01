@@ -1,10 +1,13 @@
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
-export const getAll = async () => {
-   return prisma.post.findMany({})
-}
-
+/**
+ * Create post
+ * @param {*} message 
+ * @param {*} createdAt 
+ * @param {*} updatedAt 
+ * @param {*} authorId 
+ */
 export const createPosts = async({message,createdAt,updatedAt,authorId}) => {
    return prisma.post.create({
       data:{
@@ -19,6 +22,17 @@ export const createPosts = async({message,createdAt,updatedAt,authorId}) => {
 
 }
 
+/**
+ * Get all posts
+ */
+export const getAll = async () => {
+   return prisma.post.findMany({})
+}
+
+/**
+ * Get a post by his Id
+ * @param {*} id 
+ */
 export const getById = async(id) => {
    return prisma.post.findUnique({
       where:{
@@ -27,6 +41,10 @@ export const getById = async(id) => {
    })
 }
 
+/**
+ * Get a post by the Id of his author
+ * @param {*} id 
+ */
 export const getByAuthorId = async(id) => {
    return prisma.post.findMany({
       where:{
@@ -35,6 +53,12 @@ export const getByAuthorId = async(id) => {
    })
 }
 
+/**
+ * Update a post
+ * @param {*} id
+ * @param {*} message
+ * @param {*} updatedAt  
+ */
 export const updateById = async({id,message,updatedAt}) => {
    return prisma.post.update({
       where: {
@@ -47,6 +71,10 @@ export const updateById = async({id,message,updatedAt}) => {
     });
 }
 
+/**
+ * Delete a post
+ * @param {*} id 
+ */
 export const deleteById = async(id) => {
    return prisma.post.delete({
       where:{

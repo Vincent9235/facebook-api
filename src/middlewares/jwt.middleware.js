@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 
 const jwtMiddleware = (request, response, next) => {
   const { authorization: token } = request.headers;
-  
+
   try {
     const payload = jwt.verify(token, 'SECRET');
     request.user = payload;
@@ -11,7 +11,7 @@ const jwtMiddleware = (request, response, next) => {
     response.status(401).json({
       error: {
         code: 'E010',
-        message: 'Unauthorized',
+        message: 'You are not authorized',
       },
     });
   }
